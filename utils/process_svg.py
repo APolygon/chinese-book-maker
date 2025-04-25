@@ -40,30 +40,17 @@ def process_svg(svg_path: str) -> BeautifulSoup:
                 return float(parts[1]), float(parts[2])
             return None
             
-        # Group connected paths and make them black
-        current_stroke = 0
-        last_end = None
-        
-        for i, path in enumerate(original_paths):
+        # Process each path as a separate stroke
+        for i, path in enumerate(original_paths, 1):
             d = path.get('d', '')
             coords = get_path_coords(d)
             
-            # Start a new stroke if:
-            # 1. This is the first path
-            # 2. This path starts with 'M' AND is far from the last endpoint
-            if i == 0 or (coords and (not last_end or 
-                abs(coords[0] - last_end[0]) > 50 or 
-                abs(coords[1] - last_end[1]) > 50)):
-                current_stroke += 1
-                print(f"New stroke {current_stroke} at path {i} at ({coords[0]}, {coords[1]})")
-            
-            # Update last endpoint if this path has coordinates
             if coords:
-                last_end = coords
+                print(f"Processing stroke {i} at ({coords[0]}, {coords[1]})")
                 
             path['fill'] = '#000000'
             path['style'] = 'fill:#000000'
-            path['class'] = f'stroke-{current_stroke}'  # Mark as part of a stroke
+            path['class'] = f'stroke-{i}'  # Each path is its own stroke
     else:
         print(f"Warning: No stroke group found in {svg_path}")
 
