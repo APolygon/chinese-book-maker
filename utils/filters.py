@@ -1,4 +1,4 @@
-from typing import List, Dict, Optional, Callable
+from typing import List, Dict, Optional, Callable, Tuple
 import unicodedata
 
 def filter_by_level(words: List[Dict], level: str) -> List[Dict]:
@@ -144,4 +144,94 @@ def filter_by_translation(words: List[Dict], query: str, exact: bool = False) ->
             return query in translation
     
     return [word for word in words 
-            if any(matches_translation(trans) for trans in word.get('translations', []))] 
+            if any(matches_translation(trans) for trans in word.get('translations', []))]
+
+def sort_by_pinyin(words: List[Dict], reverse: bool = False) -> List[Dict]:
+    """
+    Sort words by pinyin alphabetically.
+    
+    Args:
+        words: List of word dictionaries
+        reverse: If True, sort in reverse order
+        
+    Returns:
+        Sorted list of words
+    """
+    return sorted(words, key=lambda x: x['pinyin'], reverse=reverse)
+
+def sort_by_stroke_count(words: List[Dict], reverse: bool = False) -> List[Dict]:
+    """
+    Sort words by total stroke count.
+    
+    Args:
+        words: List of word dictionaries
+        reverse: If True, sort in reverse order
+        
+    Returns:
+        Sorted list of words
+    """
+    return sorted(words, key=lambda x: sum(x.get('stroke_numbers', (0,))), reverse=reverse)
+
+def sort_by_frequency(words: List[Dict], reverse: bool = False) -> List[Dict]:
+    """
+    Sort words by frequency score.
+    If frequency data is not available, falls back to pinyin sorting.
+    
+    Args:
+        words: List of word dictionaries
+        reverse: If True, sort in reverse order
+        
+    Returns:
+        Sorted list of words
+    """
+    # Check if any word has frequency data
+    words_with_frequency = [word for word in words if 'frequency_score' in word and word['frequency_score'] is not None]
+    
+    if not words_with_frequency:
+        print("Warning: No frequency data found in the words. All frequency_score values are missing or None.")
+        print("Falling back to pinyin sorting.")
+        return sort_by_pinyin(words, reverse)
+    
+    # Ensure frequency values are treated as numbers
+    def get_frequency(word: Dict) -> float:
+        freq = word.get('frequency_score')
+        if freq is None:
+            return 0.0
+        # Convert to float if it's a string
+        if isinstance(freq, str):
+            try:
+                return float(freq)
+            except ValueError:
+                return 0.0
+        return float(freq)
+    
+    return sorted(words, key=get_frequency, reverse=reverse)
+
+def sort_by_level(words: List[Dict], reverse: bool = False) -> List[Dict]:
+    """
+    Sort words by their lowest level.
+    Levels are ordered: foundation < beginner < intermediate < advanced
+    
+    Args:
+        words: List of word dictionaries
+        reverse: If True, sort in reverse order
+        
+    Returns:
+        Sorted list of words
+    """
+    level_order = {'foundation': 0, 'beginner': 1, 'intermediate': 2, 'advanced': 3}
+    return sorted(words, key=lambda x: level_order.get(x.get('lowest_level', ''), -1), reverse=reverse)
+
+def apply_sort(words: List[Dict], sort_func: Callable[[List[Dict], bool], List[Dict]], reverse: bool = False) -> List[Dict]:
+    """
+    Apply a sorting function to the list of words.
+    
+    Args:
+        words: List of word dictionaries
+        sort_func: Sorting function to apply
+        reverse: If True, sort in reverse order
+        
+    Returns:
+        Sorted list of words
+    """
+    return sort_func(words, reverse) 
