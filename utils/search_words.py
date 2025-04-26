@@ -2,9 +2,15 @@
 import json
 import argparse
 import os
-from typing import List, Dict
+from typing import List, Dict, Callable
 import unicodedata
 from collections import Counter
+from filters import (
+    filter_by_level,
+    filter_by_grammar,
+    filter_by_text,
+    filter_by_translation
+)
 
 def normalize_pinyin(text: str) -> str:
     """Remove tone marks from pinyin."""
@@ -23,47 +29,41 @@ def load_words(json_path: str) -> List[Dict]:
         print(f"Error: File {json_path} is not valid JSON")
         return []
 
-def search_words(words: List[Dict], query: str, search_type: str = 'chinese') -> List[Dict]:
+def search_words(words: List[Dict], query: str, search_type: str = 'chinese', exact: bool = False) -> List[Dict]:
     """
     Search for words based on query and search type.
     
     Args:
         words: List of word dictionaries
         query: Search query
-        search_type: Type of search ('chinese', 'pinyin', 'grammar', 'level')
+        search_type: Type of search ('chinese', 'pinyin', 'grammar', 'level', 'translation')
+        exact: If True, only match complete words in translations
     
     Returns:
         List of matching word dictionaries
     """
-    query = query.lower()
-    if search_type == 'pinyin':
-        query = normalize_pinyin(query)
-    results = []
+    if search_type == 'chinese':
+        return filter_by_text(words, 'chineseword', query)
+    elif search_type == 'pinyin':
+        return filter_by_text(words, 'pinyin', query, normalize=True)
+    elif search_type == 'grammar':
+        return filter_by_grammar(words, query)
+    elif search_type == 'level':
+        return filter_by_level(words, query)
+    elif search_type == 'translation':
+        return filter_by_translation(words, query, exact)
     
-    for word in words:
-        if search_type == 'chinese':
-            if query in word['chineseword'].lower():
-                results.append(word)
-        elif search_type == 'pinyin':
-            normalized_pinyin = normalize_pinyin(word['pinyin'].lower())
-            if query in normalized_pinyin:
-                results.append(word)
-        elif search_type == 'grammar':
-            if query in word['grammar'].lower():
-                results.append(word)
-        elif search_type == 'level':
-            if query in word.get('lowest_level', '').lower():
-                results.append(word)
-    
-    return results
+    return []
 
 def format_word(word: Dict) -> str:
     """Format a word dictionary for display."""
+    translations = '; '.join(word.get('translations', []))
     return (f"Chinese: {word['chineseword']}\n"
             f"Pinyin: {word['pinyin']}\n"
             f"Grammar: {word['grammar']}\n"
             f"Level: {word.get('lowest_level', '')}\n"
-            f"All levels: {', '.join(word.get('levels', []))}\n")
+            f"All levels: {', '.join(word.get('levels', []))}\n"
+            f"Translations: {translations}")
 
 def print_statistics(results: List[Dict]):
     """Print statistics about search results."""
@@ -92,13 +92,15 @@ def print_statistics(results: List[Dict]):
 
 def main():
     parser = argparse.ArgumentParser(description='Search for words in the TOCFL vocabulary list.')
-    parser.add_argument('query', help='Search query')
-    parser.add_argument('--type', choices=['chinese', 'pinyin', 'grammar', 'level'],
+    parser.add_argument('query', nargs='?', help='Search query (optional when using --count)')
+    parser.add_argument('--type', choices=['chinese', 'pinyin', 'grammar', 'level', 'translation'],
                       default='chinese', help='Type of search (default: chinese)')
-    parser.add_argument('--json', default='chinese_words_all.json',
-                      help='Path to JSON file (default: chinese_words_all.json)')
+    parser.add_argument('--json', default='chinese_words_with_translations.json',
+                      help='Path to JSON file (default: chinese_words_with_translations.json)')
     parser.add_argument('--count', action='store_true',
                       help='Show only statistics about the search results')
+    parser.add_argument('--exact', action='store_true',
+                      help='For translation search: match complete words only, not substrings')
     
     args = parser.parse_args()
     
@@ -113,8 +115,13 @@ def main():
     if not words:
         return
     
+    # If --count is used without a query, show stats for all words
+    if args.count and not args.query:
+        print_statistics(words)
+        return
+    
     # Search
-    results = search_words(words, args.query, args.type)
+    results = search_words(words, args.query, args.type, args.exact)
     
     # Display results
     if results:

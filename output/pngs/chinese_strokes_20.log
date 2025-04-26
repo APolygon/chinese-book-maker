@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.21)  25 APR 2025 16:08
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.21)  26 APR 2025 07:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -852,6 +852,14 @@ File: 八_step_01.png Graphic file (type bmp)
 <八_step_01.png>
 File: 八_step_02.png Graphic file (type bmp)
 <八_step_02.png>
+
+Underfull \hbox (badness 2469) in paragraph at lines 295--295
+\TU/TimesNewRoman(0)/m/n/12 5. classifier: handful, bundle,
+ []
+
+
+
+[3]
 File: 把_step_01.png Graphic file (type bmp)
 <把_step_01.png>
 File: 把_step_02.png Graphic file (type bmp)
@@ -868,7 +876,7 @@ File: 把_step_07.png Graphic file (type bmp)
 <把_step_07.png>
 
 
-[3]
+[4]
 File: 爸_step_01.png Graphic file (type bmp)
 <爸_step_01.png>
 File: 爸_step_02.png Graphic file (type bmp)
@@ -923,6 +931,9 @@ File: 百_step_05.png Graphic file (type bmp)
 <百_step_05.png>
 File: 百_step_06.png Graphic file (type bmp)
 <百_step_06.png>
+
+
+[5]
 File: 百_step_01.png Graphic file (type bmp)
 <百_step_01.png>
 File: 百_step_02.png Graphic file (type bmp)
@@ -957,9 +968,6 @@ File: 貨_step_10.png Graphic file (type bmp)
 <貨_step_10.png>
 File: 貨_step_11.png Graphic file (type bmp)
 <貨_step_11.png>
-
-
-[4]
 File: 公_step_01.png Graphic file (type bmp)
 <公_step_01.png>
 File: 公_step_02.png Graphic file (type bmp)
@@ -980,7 +988,7 @@ File: 司_step_05.png Graphic file (type bmp)
 <司_step_05.png>
 
 
-[5]
+[6]
 File: 班_step_01.png Graphic file (type bmp)
 <班_step_01.png>
 File: 班_step_02.png Graphic file (type bmp)
@@ -1037,6 +1045,9 @@ File: 半_step_04.png Graphic file (type bmp)
 <半_step_04.png>
 File: 半_step_05.png Graphic file (type bmp)
 <半_step_05.png>
+
+
+[7]
 File: 辦_step_01.png Graphic file (type bmp)
 <辦_step_01.png>
 File: 辦_step_02.png Graphic file (type bmp)
@@ -1069,9 +1080,6 @@ File: 辦_step_15.png Graphic file (type bmp)
 <辦_step_15.png>
 File: 辦_step_16.png Graphic file (type bmp)
 <辦_step_16.png>
-
-
-[6]
 File: 法_step_01.png Graphic file (type bmp)
 <法_step_01.png>
 File: 法_step_02.png Graphic file (type bmp)
@@ -1090,7 +1098,7 @@ File: 法_step_08.png Graphic file (type bmp)
 <法_step_08.png>
 
 
-[7]
+[8]
 File: 辦_step_01.png Graphic file (type bmp)
 <辦_step_01.png>
 File: 辦_step_02.png Graphic file (type bmp)
@@ -1185,7 +1193,7 @@ File: 幫_step_17.png Graphic file (type bmp)
 <幫_step_17.png>
 
 
-[8]
+[9]
 File: 幫_step_01.png Graphic file (type bmp)
 <幫_step_01.png>
 File: 幫_step_02.png Graphic file (type bmp)
@@ -1232,6 +1240,9 @@ File: 忙_step_05.png Graphic file (type bmp)
 <忙_step_05.png>
 File: 忙_step_06.png Graphic file (type bmp)
 <忙_step_06.png>
+
+
+[10]
 File: 棒_step_01.png Graphic file (type bmp)
 <棒_step_01.png>
 File: 棒_step_02.png Graphic file (type bmp)
@@ -1258,19 +1269,19 @@ File: 棒_step_12.png Graphic file (type bmp)
 <棒_step_12.png>
 
 
-[9] (./chinese_strokes_20.aux)
+[11] (./chinese_strokes_20.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/08/05>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 20351 strings out of 473832
- 466930 string characters out of 5729481
- 867623 words of memory out of 5000000
- 42939 multiletter control sequences out of 15000+600000
- 559555 words of font info for 58 fonts, out of 8000000 for 9000
+ 20354 strings out of 473832
+ 467007 string characters out of 5729481
+ 866622 words of memory out of 5000000
+ 42941 multiletter control sequences out of 15000+600000
+ 559563 words of font info for 59 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,5n,107p,528b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on chinese_strokes_20.pdf (9 pages).
+Output written on chinese_strokes_20.pdf (11 pages).

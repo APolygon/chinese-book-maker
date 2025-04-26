@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.21)  25 APR 2025 15:20
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.4.21)  26 APR 2025 07:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -555,8 +555,7 @@ File: tikzlibrarychains.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (/usr/local/texlive/2025/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypositioning.code.tex
 File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))
-No file chinese_strokes_5.aux.
+)) (./chinese_strokes_5.aux)
 \openout1 = `chinese_strokes_5.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -640,6 +639,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 14.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 14.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -674,10 +674,6 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 26.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 26.
 File: 阿_step_01.png Graphic file (type bmp)
 <阿_step_01.png>
 File: 阿_step_02.png Graphic file (type bmp)
@@ -736,11 +732,6 @@ File: 矮_step_12.png Graphic file (type bmp)
 <矮_step_12.png>
 File: 矮_step_13.png Graphic file (type bmp)
 <矮_step_13.png>
-
-
-[1
-
-]
 File: 愛_step_01.png Graphic file (type bmp)
 <愛_step_01.png>
 File: 愛_step_02.png Graphic file (type bmp)
@@ -767,6 +758,11 @@ File: 愛_step_12.png Graphic file (type bmp)
 <愛_step_12.png>
 File: 愛_step_13.png Graphic file (type bmp)
 <愛_step_13.png>
+
+
+[1
+
+]
 File: 安_step_01.png Graphic file (type bmp)
 <安_step_01.png>
 File: 安_step_02.png Graphic file (type bmp)
@@ -847,11 +843,11 @@ L3 programming layer <2022/08/05>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 17785 strings out of 473832
- 418081 string characters out of 5729481
- 828048 words of memory out of 5000000
- 40524 multiletter control sequences out of 15000+600000
- 559571 words of font info for 60 fonts, out of 8000000 for 9000
+ 17783 strings out of 473832
+ 417978 string characters out of 5729481
+ 830847 words of memory out of 5000000
+ 40521 multiletter control sequences out of 15000+600000
+ 559563 words of font info for 59 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  102i,5n,107p,527b,598s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
